@@ -27,7 +27,8 @@ app.post('/claude', async (req, res) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': 'TEMP_KEY',
+        'x-api-key': 'sk-ant-api03-9Zf-Rd40aLveG9CRik2_r4DeZskdqu44WLSGtn
+  9IGuhIhC9WA0Ifs6YP2DG4YHjgN7LBBGsGPg_RcSSEoGPbYA-C54vzAAA',
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
