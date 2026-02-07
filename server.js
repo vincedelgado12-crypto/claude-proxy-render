@@ -34,9 +34,9 @@ app.post('/claude', async (req, res) => {
         model: 'claude-sonnet-4-20250514',
         max_tokens: 4096,
         tools: [{
-          type: 'web_search',
+          type: 'web_search_20250305',
           name: 'web_search',
-          max_uses: 3
+          max_uses: 5
         }],
         messages: [{
           role: 'user',
