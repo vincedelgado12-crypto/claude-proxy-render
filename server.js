@@ -31,8 +31,13 @@ app.post('/claude', async (req, res) => {
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4',
-        max_tokens: 1800,
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4096,
+        tools: [{
+          type: 'web_search',
+          name: 'web_search',
+          max_uses: 3
+        }],
         messages: [{
           role: 'user',
           content: prompt
@@ -40,12 +45,21 @@ app.post('/claude', async (req, res) => {
       })
     });
 
+    console.log(`🤖 Calling Claude API with model: claude-sonnet-4`);
+
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error(`Claude API error: ${response.status} - ${errorText}`);
     }
 
     const data = await response.json();
+    
+    // Debug via header HTTP
+    res.setHeader('X-Claude-Model', 'claude-sonnet-4');
+    res.setHeader('X-Debug-Timestamp', new Date().toISOString());
+    
+    console.log('🚀 RESPONSE SENT - Model: claude-sonnet-4');
+    
     res.json(data);
 
   } catch (error) {
